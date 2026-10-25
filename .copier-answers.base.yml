@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v0.1.4
+_src_path: gh:olaheavy-dev/house-template-base
+agent_kit: true
+container_images: false
+description: 'Claude Code plugin marketplace with the shared coding-agent kit for
+    my projects: agents, skills and their eval suite.'
+domain: ''
+github_org: olaheavy-dev
+license: all-rights-reserved
+owner_github: sunkanmi-olawuwo
+owner_name: Sunkanmi Olawuwo
+project_name: agent-kit
+project_slug: agent-kit
+stacks: []
