@@ -59,8 +59,10 @@ Wait in the background with long intervals for the review status on the new head
 
 ## 5. When the external reviewer is stuck
 
-If the review stays "running" for well over its usual time (about 30 minutes), trigger it once more. If it is still stuck and the owner agrees, run the `reviewer` agent in a fresh context on the commits the external reviewer hasn't seen, and post its report as one PR comment headed "Fallback review (external reviewer unavailable)". Every later fix commit gets a fixes-only re-review before merging.
+If the review stays "running" for well over its usual time (about 30 minutes), trigger it once more. If it is still stuck, run the `reviewer` agent in a fresh context on the commits the external reviewer hasn't seen, and post its report as one PR comment headed "Fallback review (external reviewer unavailable)". Every later fix commit gets a fixes-only re-review.
+
+A fallback review satisfies the merge gate only under the project's rule in `AGENTS.md` ("When merging": the external reviewer unavailable for over 24 hours). Before then it is advice: report it to the owner, who may decide to merge on it themselves. Don't treat an earlier fallback as clearing the gate.
 
 ## 6. Merge
 
-Merge only when the latest commit is reviewed clean, every thread is resolved and every check has passed, and the pull request isn't on the owner-only list (or the owner has approved it). Squash-merge with `--match-head-commit` so nothing unreviewed slips in.
+Merge only when the latest commit is reviewed clean, every thread is resolved, every check has passed, and the pull request isn't on the owner-only list in `AGENTS.md`. An owner-only pull request is handed back to the owner to merge, even when they've approved the change. Squash-merge with `--match-head-commit` so nothing unreviewed slips in.
