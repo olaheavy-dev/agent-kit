@@ -40,7 +40,7 @@ Read-only agents use a tools allow-list and deny `Edit` and `Write`: plugin agen
 ## Quality
 
 - `make check` validates the plugin and the marketplace with a pinned Claude Code (`claude plugin validate`), in CI on every pull request.
-- `plugins/agent-kit/evals/` holds the eval suite: each case checks that a piece of the kit triggers on natural phrasing (or stays quiet), and how good the result is. Each case is compared with a run without the plugin. `make eval-plugin` runs it with real model calls, capped at $10.
+- `plugins/agent-kit/evals/` holds the eval suite: each case checks that a piece of the kit triggers on natural phrasing (or stays quiet), and how good the result is. Each case is compared with a run without the plugin. `make eval-plugin` runs it with real model calls, capped at $10. A difference of 0 isn't always a gap: Claude finds an easy bypass without the kit too, so the pre-push review case shows its value in the delegation to a read-only reviewer, not in the score.
 
 ## Licence
 

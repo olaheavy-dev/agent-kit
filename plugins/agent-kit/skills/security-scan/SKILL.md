@@ -1,7 +1,7 @@
 ---
 name: security-scan
-description: Scan the repository for leaked secrets, insecure GitHub Actions workflows and known-vulnerable dependencies with gitleaks, zizmor and OSV-Scanner, and report findings by severity. Use when asked for a security scan or audit, before an owner-only merge, or after changing workflows or dependencies.
-when_to_use: Security scan, secrets check, vulnerable dependencies, workflow audit, "is this safe to merge", supply chain.
+description: Check a repository for leaked secrets (including in git history), risky GitHub Actions workflows and dependencies with known vulnerabilities, using gitleaks, zizmor and OSV-Scanner, and report findings by severity. Use whenever someone asks to check for secrets, audit workflows, look for vulnerable dependencies, or confirm a change is safe to merge.
+when_to_use: Leaked secrets or API keys, "check before I merge", security scan or audit, risky or insecure workflows, GitHub Actions security, vulnerable or outdated dependencies, CVEs, supply chain.
 allowed-tools: Bash(uvx *) Bash(docker run *) Bash(git ls-files *)
 ---
 
