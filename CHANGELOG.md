@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/olaheavy-dev/agent-kit/compare/v0.1.0...v0.1.1) (2026-10-25)
+
+
+### Bug Fixes
+
+* tune the eval rubrics and the security-scan trigger from the first full run ([#5](https://github.com/olaheavy-dev/agent-kit/issues/5)) ([b7fd34b](https://github.com/olaheavy-dev/agent-kit/commit/b7fd34bbff05d3819abb5f4127704929a894c1f6))
+
 ## 0.1.0 (2026-10-25)
 
 
