@@ -1,7 +1,7 @@
 {
   "name": "agent-kit",
   "displayName": "Agent kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The coding-agent workflow for projects built from house-template-base: plan, build, verify, review and handle review comments, with skills for test-first work, security scans, review loops and carrying improvements upstream",
   "author": {
     "name": "Sunkanmi Olawuwo",
