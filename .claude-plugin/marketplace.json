@@ -1,0 +1,15 @@
+{
+  "name": "olaheavy-dev",
+  "description": "The shared coding-agent kit for olaheavy-dev projects",
+  "owner": {
+    "name": "Sunkanmi Olawuwo",
+    "url": "https://github.com/olaheavy-dev"
+  },
+  "plugins": [
+    {
+      "name": "agent-kit",
+      "source": "./plugins/agent-kit",
+      "description": "Planner, implementer, verifier, reviewer, deep reviewer and review handler agents, plus skills for test-first work, security scans, review loops and carrying improvements upstream to a template"
+    }
+  ]
+}
