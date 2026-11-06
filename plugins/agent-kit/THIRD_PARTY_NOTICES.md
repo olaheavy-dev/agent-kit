@@ -28,7 +28,7 @@ We are not certain exactly which parts of the founder's `brainstorming` and `wri
 | Kit material | Relationship to upstream |
 | --- | --- |
 | `pr-review-loop`: the "no performative agreement" and "verify before changing anything" steps | Inspired by upstream's `receiving-code-review`, written fresh |
-| `implementer` agent: status codes and the ledger of what it did | Inspired by upstream's `subagent-driven-development`, written fresh |
+| `guardrails` skill (preloaded into the `implementer` agent): the ledger and its status codes | Inspired by upstream's `subagent-driven-development`, written fresh |
 | `pair-tdd`, `autonomous-tdd`, `guardrails` | Believed to be the founder's own. Each is compared with upstream when it is ported, and moves to "Derived" if derived text is found |
 
 If a change copies upstream wording into any of these, it adds the header and moves the item to "Derived" in the same pull request.

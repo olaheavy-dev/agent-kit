@@ -15,31 +15,31 @@ The capitalised names below (`SIZE_LIMITS`, `STOP_AND_ASK` and so on) are **exte
 
 ## Keep changes reviewable
 - Work in **tasks**: a small, human-approved unit of work with a one-sentence done criterion and a test list (see the plan rule under Scope). Inside a task, work in red -> green -> refactor slices (see the project's TDD skill) and keep going until the task is complete.
-- **Checkpoint:** stop for human review when the task is complete. The task's plan estimate (files and lines) is its size budget. Stop and ask if the diff exceeds the budget set by `SIZE_LIMITS` (kit default: more than 50% over the estimate in lines or in files), or if the work needs a file the task's Files list does not name and that is not already part of the task (see the next points). `SIZE_LIMITS` covers the change, the slice and the task. Kit default for a task: over about 300 changed lines, stop and ask whether to split it, whatever the estimate says. The kit sets no default limit for a slice.
+- **Checkpoint:** when the task is complete, check its size and report it to the owner (below). The task's plan estimate (files and lines) is its size budget. **Over budget, or any item under "Stop and ask before", stops in BOTH modes; an autonomous run continues only after a clean checkpoint.** Stop and ask if the diff exceeds the budget set by `SIZE_LIMITS` (kit default: more than 50% over the estimate in lines or in files), or if the work needs a file the task's Files list does not name and that is not already part of the task (see the next points). `SIZE_LIMITS` covers the change, the slice and the task. Kit default for a task: over about 300 changed lines, stop and ask whether to split it, whatever the estimate says. The kit sets no default limit for a slice.
 - **No estimate in the plan:** state "no estimate in the plan" in the checkpoint, use the `SIZE_LIMITS` default (about 300 changed lines and 50% over the plan's file list, if it has one), and ask only when the diff exceeds that default.
 - **Counting the diff** (for the checkpoint report). Count against the merge base, so committed, staged, unstaged and untracked work are all included (`git diff` alone misses commits and new files):
   ```sh
   B=$(git merge-base HEAD origin/main)   # use the project's default branch; fetch first if origin/main is missing
   # files: changed or created, committed or not
-  { git diff --name-only "$B"; git ls-files --others --exclude-standard; } | sort -u | wc -l
+  { git diff --no-renames --name-only "$B"; git ls-files --others --exclude-standard; } | sort -u | wc -l
   # tracked lines (committed + staged + unstaged)
-  git diff --shortstat "$B"
+  git diff --no-renames --shortstat "$B"
   # untracked lines (binary files count 0); do not run this under `set -o pipefail`: git diff --no-index exits 1
-  git ls-files --others --exclude-standard -z | xargs -0 -I{} git diff --no-index --numstat /dev/null {} | awk '$1!="-"{s+=$1} END{print s+0}'
+  git ls-files --others --exclude-standard -z | xargs -0 -r -n1 git diff --no-index --numstat /dev/null 2>/dev/null | awk '$1!="-"{s+=$1} END{print s+0}'
   ```
-  **M lines = insertions + deletions** from the second command, plus the untracked lines from the third. Exclude plan and spec documents from the count (remove their paths from the file count and subtract their lines) and say so in the report. Ignore other files unrelated to the task.
+  **M lines = insertions + deletions** from the second command, plus the untracked lines from the third. `--no-renames` makes a rename count as a deletion plus an addition whatever the user's `diff.renames` setting says. An untracked nested git repository counts as 1 file with 0 lines. Exclude plan and spec documents, and the ledger file when it is a file next to the plan, from the count (remove their paths from the file count and subtract their lines) and say so in the report. Ignore other files unrelated to the task.
 - The task is defined by the approved plan. Do not widen, redefine, or add to it; new work you discover goes under "Noticed, not changed". Do not keep going "while you're in there". Files that the completeness search or the project's pre-flight check shows must change **are part of the task**: count them, list them at the checkpoint, and ask only if they push the diff over budget.
 - At a checkpoint, present the diff summary (files, what changed, why), one line stating the diff count (`N files, M lines` from the counting commands above), the slice table from the TDD skill, the completeness search report, and open questions. Update the ledger (below). Then:
   - **Pair mode:** wait for the owner.
-  - **Autonomous mode:** post the checkpoint as a **separate message in the session** (it may also be copied into the pull request description) and continue unless the owner stops you.
-  - Whether a run is pair or autonomous is set in the plan or by the owner; do not assume a default.
+  - **Autonomous mode:** post the checkpoint as a **separate message in the session** (it may also be copied into the pull request description) and continue unless the owner stops you, but only if the checkpoint is clean (within budget, no stop-and-ask item open). Otherwise stop and ask, as in pair mode.
+  - With no plan, work in pair mode (decision 0003 section 4); otherwise the mode is whatever the plan or the owner sets.
 
 ## Stop and ask before
 The project's own list comes from `STOP_AND_ASK` (additive). At least, stop and ask before:
 - Adding or changing a database migration or schema that the plan has not already approved.
 - Deleting code, files, or tests.
 - Changing a public contract (anything in `PUBLIC_CONTRACT`: routes, request and response shapes, schemas, generated types) that the plan does not include.
-- Adding or upgrading **any** package, including one from `APPROVED_PACKAGES` when the upgrade is a major version. A package on the approved list may be added without asking; an empty list means ask for every one.
+- Adding a package that is not in `APPROVED_PACKAGES` (an empty list means ask for every one), or making a major upgrade of any package, approved or not.
 - Changing authentication or access rules, or changing the behaviour of existing shared code. Adding a new member that the task explicitly asks for is not a trigger.
 - Any requirement that is ambiguous or has more than one reasonable interpretation.
 
@@ -77,7 +77,8 @@ Each task has one entry:
 - "Noticed, not changed" items, each with its issue link
 
 Rules:
-1. Create the ledger when the plan is approved and before the first task starts. Update it at task start, at every checkpoint, at every stop-and-ask, and at task completion. **When resuming, read it first**, then continue at the first task that is not `DONE`.
+1. Create the ledger when the plan is approved and before the first task starts. Update it at task start, at every checkpoint, at every stop-and-ask, and at task completion. **When resuming, read it first**, then continue at the first task that is not `DONE` or `DONE_WITH_CONCERNS`, after dealing with any `NEEDS_CONTEXT` or `BLOCKED` task by asking.
+   Status codes: `TODO` = not started; `IN_PROGRESS` = work under way; `DONE` = finished with fresh check results recorded; `DONE_WITH_CONCERNS` = finished and counts as done, with concerns raised at the checkpoint; `NEEDS_CONTEXT` = waiting for an answer from the owner: ask first, do not resume; `BLOCKED` = cannot proceed: ask first, do not resume.
 2. It is a record, not an approval: the plan stays the source of truth for scope. A ledger entry never widens a task.
 3. A task is `DONE` only with the fresh check results recorded in its entry.
 4. Never put secrets or personal data in it.
