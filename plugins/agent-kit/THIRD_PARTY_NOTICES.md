@@ -8,6 +8,8 @@ agent-kit is all rights reserved (see `LICENSE` at the root of the [agent-kit re
 - Licence: MIT License, read on 6 November 2026 from https://github.com/obra/superpowers/blob/main/LICENSE (the same text as at the reference commit below)
 - Reference commit: `22f0b463e7a5e579904dd6211a520321035526f7` (tag v7.0.2, committed 3 November 2026)
 
+The skills and changes listed below are added by later pull requests under [issue #7](https://github.com/olaheavy-dev/agent-kit/issues/7); a row describes the plan until its item exists.
+
 ### Derived (MIT applies to the whole file, including our changes)
 
 Each of these skills carries a header in its `SKILL.md` with the copyright line below and a pointer to this file.
@@ -30,8 +32,6 @@ We are not certain exactly which parts of the founder's `brainstorming` and `wri
 | `pair-tdd`, `autonomous-tdd`, `guardrails` | Believed to be the founder's own. Each is compared with upstream when it is ported, and moves to "Derived" if derived text is found |
 
 If a change copies upstream wording into any of these, it adds the header and moves the item to "Derived" in the same pull request.
-
-These skills are added by later pull requests under [issue #7](https://github.com/olaheavy-dev/agent-kit/issues/7); a row describes the plan until its skill exists.
 
 ### Licence text
 
