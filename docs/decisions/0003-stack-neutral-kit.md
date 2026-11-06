@@ -91,6 +91,20 @@ No new agent replaces planner, implementer, verifier, reviewer, deep-reviewer or
 
 Commits and pull requests that port these skills carry no `Co-Authored-By` or "generated with" lines, as `AGENTS.md` rule 5 already requires. Upstream credit lives in the notice and the headers, not in commit trailers.
 
+## Update, 6 Nov 2026
+
+The founder added two extension points to the nine in section 2 (issue #7, comments of 6 November 2026). There are now **eleven**; sections 1 to 6 above are otherwise unchanged.
+
+| Extension point | What it answers | Usually supplied by |
+| --- | --- | --- |
+| `LEDGER_LOCATION` | Where the ledger of the plan's tasks is kept. Default: the same place as the plan (`PLAN_LOCATION`): one comment edited in place, or a small file next to the plan. With neither, the skill stops and asks | Project `AGENTS.md` |
+| `TRACKER` | The ticket tracker: its name, fields, status names and what each status requires. Default for a GitHub Project: statuses Backlog, Shaping, Ready, In progress, In review, Done and fields Type, Stage/Milestone and Size. Nothing moves to Ready without acceptance criteria, tests and an estimate. Missing means stop and ask | Project `AGENTS.md` |
+
+- **The ledger.** Every implementation task keeps a ledger (entry fields, the status codes `TODO`, `IN_PROGRESS`, `DONE`, `DONE_WITH_CONCERNS`, `NEEDS_CONTEXT` and `BLOCKED`, and four rules) in the `guardrails` skill, which is preloaded into the implementer. The idea is inspired by upstream's `subagent-driven-development` progress ledger and is written fresh, so it carries no MIT header (see section 5). One writer at a time (the implementer); others read, because two agents editing one comment would overwrite each other.
+- **One GitHub Project per repository.** Each repository has its own board and roadmap. A dependency on another repository is recorded as "blocked by owner/repo#n" in the issue body and listed in the plan. GitHub's built-in workflows set an item's Status to Done when it is closed or its pull request is merged ([built-in automations](https://docs.github.com/en/issues/planning-and-tracking-with-projects/automating-your-project/using-the-built-in-automations), read 6 November 2026); the other statuses need the `TRACKER` rules. Setting up the Projects is a separate step per repository.
+- **Resolved from "Unverified".** The FastAPI layer's migration tool is Alembic (`make migration name="..."`, `make migrate`), read from house-template-fastapi on 6 November 2026. The .NET test-filter syntax under Microsoft.Testing.Platform is still unverified.
+- **Count.** Where sections 2 and 3 above list nine points, read eleven.
+
 ## Consequences
 
 - Every template layer must ship a `.claude/rules/test-conventions.md`, and every project's `AGENTS.md` must give its size limits and the other extension points. Until it does, the skills stop and ask (issue #7, pull request 6).
