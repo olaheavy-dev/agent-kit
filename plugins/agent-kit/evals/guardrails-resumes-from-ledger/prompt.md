@@ -1,5 +1,5 @@
 ---
-description: A stopped run is resumed from the ledger: read it first, continue at the first task that is not DONE, and update the ledger
+description: "A stopped run is resumed from the ledger: read it first, continue at the first task that is not DONE, and update the ledger"
 max_turns: 6
 timeout_seconds: 240
 allowed_tools: [Read, Glob, Grep, Skill]
