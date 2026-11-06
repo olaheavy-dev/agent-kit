@@ -1,5 +1,5 @@
 ---
-description: "In an autonomous run on task 2, the earlier task's changes must not count against this task's estimate, so the task is within budget and the run continues"
+description: "Regression guard: the earlier task's changes must not make the task look over budget; both arms are expected to pass"
 max_turns: 6
 timeout_seconds: 240
 allowed_tools: [Read, Glob, Grep, Skill]
