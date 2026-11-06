@@ -9,7 +9,7 @@
     {
       "name": "agent-kit",
       "source": "./plugins/agent-kit",
-      "description": "Planner, implementer, verifier, reviewer, deep reviewer and review handler agents, plus skills for test-first work, security scans, review loops and carrying improvements upstream to a template"
+      "description": "Planner, implementer, verifier, reviewer, deep reviewer and review handler agents, plus skills for the workflow guardrails (diff-size budget, stop-and-ask, ledger), test-first work, security scans, review loops and carrying improvements upstream to a template"
     }
   ]
 }

@@ -1,6 +1,6 @@
 # 0003. Stack-neutral kit, extension points and third-party notices
 
-Status: Accepted
+Status: Accepted (partly superseded by [0004](0004-eleven-extension-points-ledger-and-tracker.md))
 
 ## Context
 
