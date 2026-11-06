@@ -1,6 +1,6 @@
 # Extension points
 
-The agent-kit skills and agents are stack-neutral ([decision 0003](https://github.com/olaheavy-dev/agent-kit/blob/main/docs/decisions/0003-stack-neutral-kit.md)). Where a skill needs something that depends on the stack or the project, it names an **extension point** in capitals, and the project or its template layer supplies the value.
+The agent-kit skills and agents are stack-neutral ([decision 0003](https://github.com/olaheavy-dev/agent-kit/blob/main/docs/decisions/0003-stack-neutral-kit.md); the list of eleven points is in [decision 0004](https://github.com/olaheavy-dev/agent-kit/blob/main/docs/decisions/0004-eleven-extension-points-ledger-and-tracker.md)). Where a skill needs something that depends on the stack or the project, it names an **extension point** in capitals, and the project or its template layer supplies the value.
 
 This file sits at the root of the plugin folder so it travels with every installed copy: Claude Code copies only the plugin folder into its cache, and files outside it are not copied ([plugin loading, "In-place and copied plugins"](https://code.claude.com/docs/en/plugins/loading.md), read 6 November 2026). Skills and the implementer agent refer to it as `${CLAUDE_PLUGIN_ROOT}/extension-points.md`, a variable Claude Code substitutes in plugin skills ([skills reference](https://code.claude.com/docs/en/skills), read 6 November 2026). Agent file content is documented as substituted the same way; whether the variable is also substituted inside a skill that is preloaded into an agent through `skills:` is **unverified**, so each skill also says in words where this file is and gives its GitHub URL as a last fallback: https://github.com/olaheavy-dev/agent-kit/blob/main/plugins/agent-kit/extension-points.md.
 
@@ -75,4 +75,4 @@ Migrations: the layer uses Alembic (`make migration name="..."` writes a revisio
 - Put `RUN_CHECK`, `STOP_AND_ASK`, `APPROVED_PACKAGES`, `PUBLIC_CONTRACT`, `PLAN_LOCATION`, `SPEC_LOCATION`, `SIZE_LIMITS`, `DESIGN_BRIEF_STEP`, `LEDGER_LOCATION` and `TRACKER` under clear headings in `AGENTS.md`, using the point's name in the heading or the first sentence so it can be found by search.
 - Put `TEST_CONVENTIONS` (including the preflight) in the layer's `.claude/rules/test-conventions.md`.
 - Until a layer ships `test-conventions.md`, the skills stop and ask whenever they need to run a test.
-- One GitHub Project per repository. A dependency on another repository is recorded as "blocked by owner/repo#n" in the issue body and listed in the plan.
+- GitHub Projects hold the tickets (whether the repository has its own board is named in `TRACKER`). A dependency on another repository is recorded as "blocked by owner/repo#n" in the issue body and listed in the plan.
