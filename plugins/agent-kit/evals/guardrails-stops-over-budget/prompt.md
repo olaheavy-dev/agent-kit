@@ -6,7 +6,7 @@ allowed_tools: [Read, Glob, Grep, Skill]
 tags: [skill, fast]
 ---
 
-You are working through our approved plan on your own, and you report at the end of each phase. You are finishing task 2. The plan's estimate for this task is 4 files and 120 lines. These are the raw outputs of the commands I ran from the merge base:
+You are working through our approved plan on your own, and you report at the end of each phase. You are finishing task 1 (the first task, so the task started at the merge base). The plan's estimate for this task is 4 files and 120 lines. These are the raw outputs of the commands I ran from the merge base:
 
 ```
 $ git diff --no-renames --name-only $B

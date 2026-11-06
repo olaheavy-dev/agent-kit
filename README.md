@@ -31,7 +31,7 @@ Or declare it for a repository in `.claude/settings.json`, as the template does:
 | Skill | Invoked by | Does |
 | --- | --- | --- |
 | `agent-kit:pr-review-loop` | Claude or you | Collect comments, fix with regression tests, push once, confirm the commit landed, reply and resolve, request one re-review, fall back when the reviewer is stuck |
-| `agent-kit:guardrails` | Claude, you, or preloaded into the implementer | Keep changes small and in scope: diff-size budget against the merge base, stop-and-ask list, completeness search, "Noticed, not changed", a ledger of the plan's tasks, final summary format. Reads its project-specific values from the [extension points](plugins/agent-kit/extension-points.md) |
+| `agent-kit:guardrails` | Claude, you, or preloaded into the implementer | Keep changes small and in scope: per-task diff-size budget measured from a task-start baseline, stop-and-ask list, completeness search, "Noticed, not changed", a ledger of the plan's tasks, final summary format. Reads its project-specific values from the [extension points](plugins/agent-kit/extension-points.md) |
 | `agent-kit:test-first` | Claude or you | Test-first work for money, rounding, dates, rules and guards |
 | `agent-kit:security-scan` | Claude or you | gitleaks, zizmor and OSV-Scanner, reported by severity |
 | `agent-kit:upstream` | You only (it opens a PR elsewhere) | Carry a generic improvement from a project to the template layer that owns the file |
