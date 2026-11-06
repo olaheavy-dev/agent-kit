@@ -8,6 +8,7 @@ Hard-to-reverse decisions get a numbered record in this folder (template: [0001]
 | --- | --- | --- |
 | [0001](0001-record-decisions.md) | Record decisions in this folder | Accepted |
 | [0002](0002-start-from-house-template.md) | Start from the house template layers | Accepted |
+| [0003](0003-stack-neutral-kit.md) | Stack-neutral kit, extension points and third-party notices | Accepted |
 
 ## Register
 

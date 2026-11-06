@@ -45,3 +45,5 @@ Read-only agents use a tools allow-list and deny `Edit` and `Write`: plugin agen
 ## Licence
 
 Copyright © 2026 Sunkanmi Olawuwo. All rights reserved. Public for portfolio purposes; see [LICENSE](LICENSE).
+
+The exception is the third-party material listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), which keeps its own licence (MIT for skills adapted from obra/superpowers; see [decision 0003](docs/decisions/0003-stack-neutral-kit.md)).
