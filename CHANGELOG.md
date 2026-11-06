@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/olaheavy-dev/agent-kit/compare/v0.1.1...v0.2.0) (2026-11-06)
+
+
+### Features
+
+* guardrails skill, the ledger, the TRACKER point and the extension-points document ([#11](https://github.com/olaheavy-dev/agent-kit/issues/11)) ([5dc8893](https://github.com/olaheavy-dev/agent-kit/commit/5dc8893361ea869ec0c709b1a5f32a7f9b2e6880))
+
 ## [0.1.1](https://github.com/olaheavy-dev/agent-kit/compare/v0.1.0...v0.1.1) (2026-10-25)
 
 
