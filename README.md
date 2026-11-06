@@ -31,9 +31,12 @@ Or declare it for a repository in `.claude/settings.json`, as the template does:
 | Skill | Invoked by | Does |
 | --- | --- | --- |
 | `agent-kit:pr-review-loop` | Claude or you | Collect comments, fix with regression tests, push once, confirm the commit landed, reply and resolve, request one re-review, fall back when the reviewer is stuck |
+| `agent-kit:guardrails` | Claude, you, or preloaded into the implementer | Keep changes small and in scope: diff-size budget, stop-and-ask list, completeness search, "Noticed, not changed", final summary format. Reads its project-specific values from the [extension points](plugins/agent-kit/extension-points.md) |
 | `agent-kit:test-first` | Claude or you | Test-first work for money, rounding, dates, rules and guards |
 | `agent-kit:security-scan` | Claude or you | gitleaks, zizmor and OSV-Scanner, reported by severity |
 | `agent-kit:upstream` | You only (it opens a PR elsewhere) | Carry a generic improvement from a project to the template layer that owns the file |
+
+The kit is stack-neutral: skills name capitalised extension points (`RUN_CHECK`, `TEST_CONVENTIONS`, `SIZE_LIMITS` and so on) that the project or its template layer supplies, and stop and ask when one is missing. See [extension-points.md](plugins/agent-kit/extension-points.md).
 
 Read-only agents use a tools allow-list and deny `Edit` and `Write`: plugin agents can't set a permission mode or hooks, so the restriction lives in their tools.
 
