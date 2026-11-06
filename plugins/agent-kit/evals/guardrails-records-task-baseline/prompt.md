@@ -1,5 +1,5 @@
 ---
-description: "The agent records a task-start baseline (HEAD SHA, untracked files, uncommitted offset) in the ledger before starting a task"
+description: "The agent refuses to start a task on a dirty working tree and asks what to do with the leftovers"
 max_turns: 6
 timeout_seconds: 240
 allowed_tools: [Read, Glob, Grep, Skill]
@@ -19,12 +19,12 @@ Task 3: write the import summary - TODO - planned 2 files/50 lines
 $ git rev-parse HEAD
 a1b2c3d
 
-$ git ls-files --others --exclude-standard
-notes.txt
+$ git status --porcelain
+ M src/import.py
+?? notes.txt
 
 $ git diff HEAD --shortstat
  1 file changed, 3 insertions(+)
 ```
-(The 3 uncommitted lines are already in src/import.py.)
 
-You are about to start task 2. Show exactly the ledger update you make before writing any code, and what you will report at the end of the task. Don't run commands.
+You are about to start task 2. Say exactly what you do first, what you write in the ledger and when, and what you will report at the end of the task. Don't run commands.
